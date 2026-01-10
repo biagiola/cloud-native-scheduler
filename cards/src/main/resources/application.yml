@@ -2,7 +2,7 @@ server:
   port: 9000
 spring:
   application:
-    name: "cards"
+    name: "tasks"
   profiles:
     active: "prod"
   datasource:
