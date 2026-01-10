@@ -1,6 +1,7 @@
 package com.eazybytes.cards.mapper;
 
 import com.eazybytes.cards.dto.TaskDto;
+import com.eazybytes.cards.dto.TaskStatusUpdateDto;
 import com.eazybytes.cards.entity.Task;
 
 public class TaskMapper {
@@ -30,6 +31,13 @@ public class TaskMapper {
         if (dto.getAttempts() != null) task.setAttempts(dto.getAttempts());
         task.setExecutedAt(dto.getExecutedAt());
         task.setLastError(dto.getLastError());
+        return task;
+    }
+
+    public static Task mapStatusUpdate(TaskStatusUpdateDto dto, Task task) {
+        task.setStatus(dto.getStatus());
+        if (dto.getExecutedAt() != null) task.setExecutedAt(dto.getExecutedAt());
+        if (dto.getLastError() != null) task.setLastError(dto.getLastError());
         return task;
     }
 }

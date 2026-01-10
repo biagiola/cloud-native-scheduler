@@ -4,6 +4,7 @@ import com.eazybytes.cards.constants.TaskConstants;
 import com.eazybytes.cards.dto.ErrorResponseDto;
 import com.eazybytes.cards.dto.ResponseDto;
 import com.eazybytes.cards.dto.TaskDto;
+import com.eazybytes.cards.dto.TaskStatusUpdateDto;
 import com.eazybytes.cards.service.ITaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -81,6 +82,25 @@ public class TaskController {
     @PutMapping("/{taskId}")
     public ResponseEntity<ResponseDto> updateTask(@PathVariable UUID taskId, @Valid @RequestBody TaskDto taskDto) {
         boolean isUpdated = taskService.updateTask(taskId, taskDto);
+        if (isUpdated) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseDto(TaskConstants.STATUS_200, TaskConstants.MESSAGE_200));
+        }
+        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
+                .body(new ResponseDto(TaskConstants.STATUS_417, TaskConstants.MESSAGE_417_UPDATE));
+    }
+
+    @Operation(summary = "Update Task Status REST API", description = "REST API to update a Task status by UUID")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "HTTP Status OK"),
+            @ApiResponse(responseCode = "417", description = "Expectation Failed"),
+            @ApiResponse(responseCode = "500", description = "HTTP Status Internal Server Error",
+                    content = @Content(schema = @Schema(implementation = ErrorResponseDto.class)))
+    })
+    @PatchMapping("/{taskId}")
+    public ResponseEntity<ResponseDto> updateTaskStatus(@PathVariable UUID taskId,
+                                                        @Valid @RequestBody TaskStatusUpdateDto taskStatusUpdateDto) {
+        boolean isUpdated = taskService.updateTaskStatus(taskId, taskStatusUpdateDto);
         if (isUpdated) {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new ResponseDto(TaskConstants.STATUS_200, TaskConstants.MESSAGE_200));

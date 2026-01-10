@@ -1,6 +1,7 @@
 package com.eazybytes.cards.service.impl;
 
 import com.eazybytes.cards.dto.TaskDto;
+import com.eazybytes.cards.dto.TaskStatusUpdateDto;
 import com.eazybytes.cards.entity.Task;
 import com.eazybytes.cards.entity.TaskStatus;
 import com.eazybytes.cards.exception.ResourceNotFoundException;
@@ -10,6 +11,7 @@ import com.eazybytes.cards.service.ITaskService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,10 +54,33 @@ public class TaskServiceImpl implements ITaskService {
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new ResourceNotFoundException("Task", "id", taskId.toString()));
 
+        if (taskDto.getDescription() == null) taskDto.setDescription(task.getDescription());
+        if (taskDto.getEmail() == null) taskDto.setEmail(task.getEmail());
+        if (taskDto.getExecuteAt() == null) taskDto.setExecuteAt(Instant.now());
+
         TaskMapper.mapToTask(taskDto, task);
         taskRepository.save(task);
         return true;
     }
+
+    @Override
+    public boolean updateTaskStatus(UUID taskId, TaskStatusUpdateDto taskStatusUpdateDto) {
+        System.out.println("TaskId: " + taskId);
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new ResourceNotFoundException("Task", "id", taskId.toString()));
+
+        if (taskStatusUpdateDto.getStatus() != null
+                && taskStatusUpdateDto.getStatus() != task.getStatus()) {
+            Integer attempts = task.getAttempts();
+            task.setAttempts(attempts == null ? 1 : attempts + 1);
+        }
+
+        TaskMapper.mapStatusUpdate(taskStatusUpdateDto, task);
+        taskRepository.save(task);
+
+        return true;
+    }
+
 
     @Override
     public boolean deleteTask(UUID taskId) {
