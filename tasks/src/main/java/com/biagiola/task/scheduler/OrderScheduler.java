@@ -12,7 +12,7 @@ public class OrderScheduler {
     private int counter = 0;
     @Scheduled(fixedRate = 1000)
     public void processPendingOrders() {
-        System.out.println("Processing Orders no dynamic: " + counter++);
+//        System.out.println("Processing Orders no dynamic: " + counter++);
 
 //        List<Order> orders = orderRepository.findByStatus("PENDING");
 //        orders.forEach(order -> {

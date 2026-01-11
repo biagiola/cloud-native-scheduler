@@ -47,7 +47,7 @@ public class TaskController {
         UUID id = taskService.createTask(taskDto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(new ResponseDto(TaskConstants.STATUS_201, TaskConstants.MESSAGE_201 + " (id=" + id + ")"));
+                .body(new ResponseDto(TaskConstants.STATUS_201, TaskConstants.MESSAGE_201 + id));
     }
 
     @Operation(summary = "Fetch Task by id REST API", description = "REST API to fetch a Task by UUID")

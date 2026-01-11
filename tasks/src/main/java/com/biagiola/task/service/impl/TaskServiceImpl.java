@@ -26,7 +26,6 @@ public class TaskServiceImpl implements ITaskService {
         Task task = new Task();
         TaskMapper.mapToTask(taskDto, task);
 
-        // minimal defaults
         if (task.getStatus() == null) task.setStatus(TaskStatus.SCHEDULED);
         if (task.getAttempts() == null) task.setAttempts(0);
 

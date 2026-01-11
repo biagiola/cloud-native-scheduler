@@ -1,5 +1,8 @@
 package com.biagiola.task.dto;
 
+import com.biagiola.task.json.SecondsOrInstantDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import com.biagiola.task.entity.TaskStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
@@ -30,6 +33,7 @@ public class TaskDto {
     private String email;
 
     @NotNull(message = "executeAt can not be null")
+    @JsonDeserialize(using = SecondsOrInstantDeserializer.class)
     @Schema(description = "Execution time in UTC (Instant)", example = "2026-01-09T12:30:00Z")
     private Instant executeAt;
 
