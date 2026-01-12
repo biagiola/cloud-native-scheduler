@@ -32,19 +32,16 @@ public class TaskDto {
     @Schema(description = "Email to notify", example = "user@example.com")
     private String email;
 
-    @NotNull(message = "executeAt can not be null")
-    @JsonDeserialize(using = SecondsOrInstantDeserializer.class)
-    @Schema(description = "Execution time in UTC (Instant)", example = "2026-01-09T12:30:00Z")
-    private Instant executeAt;
-
     @Schema(description = "Task status", example = "SCHEDULED")
     public TaskStatus status;
 
     @Schema(description = "Number of attempts", example = "0")
     private Integer attempts;
 
+    @NotNull(message = "executeAt can not be null")
+    @JsonDeserialize(using = SecondsOrInstantDeserializer.class)
     @Schema(description = "Last execution timestamp (UTC)", example = "2026-01-09T12:30:05Z")
-    private Instant executedAt;
+    private Instant executeAt;
 
     @Schema(description = "Last error message if failed", example = "SMTP server unavailable")
     private String lastError;

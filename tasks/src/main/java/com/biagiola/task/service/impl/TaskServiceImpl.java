@@ -26,7 +26,8 @@ public class TaskServiceImpl implements ITaskService {
         Task task = new Task();
         TaskMapper.mapToTask(taskDto, task);
 
-        if (task.getStatus() == null) task.setStatus(TaskStatus.SCHEDULED);
+        System.out.println("getStatus: " + task.toString());
+        if (task.getStatus() == null) task.setStatus(TaskStatus.PENDING);
         if (task.getAttempts() == null) task.setAttempts(0);
 
         Task saved = taskRepository.save(task);

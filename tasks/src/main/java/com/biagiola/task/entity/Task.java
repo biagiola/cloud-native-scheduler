@@ -32,9 +32,9 @@ public class Task {
     @Column(name = "email", nullable = false, length = 254)
     private String email;
 
-    @NotNull
-    @Column(name = "execute_at", nullable = false)
-    private Instant executeAt;
+//    @NotNull
+//    @Column(name = "execute_at", nullable = false)
+//    private Instant executeAt;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -49,11 +49,12 @@ public class Task {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at", nullable = true)
     private Instant updatedAt;
 
-    @Column(name = "executed_at")
-    private Instant executedAt;
+    @NotNull
+    @Column(name = "execute_at", nullable = false)
+    private Instant executeAt;
 
     @Lob
     @Column(name = "last_error")
@@ -64,7 +65,7 @@ public class Task {
         if (id == null) id = UUID.randomUUID();
         Instant now = Instant.now();
         if (createdAt == null) createdAt = now;
-        if (status == null) status = TaskStatus.SCHEDULED;
+        if (status == null) status = TaskStatus.PENDING;
         if (attempts == null) attempts = 0;
     }
 

@@ -16,7 +16,7 @@ public class TaskStatusUpdateDto {
     private TaskStatus status;
 
     @Schema(description = "Last execution timestamp (UTC)", example = "2026-01-09T12:30:05Z")
-    private Instant executedAt;
+    private Instant executeAt;
 
     @Schema(description = "Last error message if failed", example = "SMTP server unavailable")
     private String lastError;

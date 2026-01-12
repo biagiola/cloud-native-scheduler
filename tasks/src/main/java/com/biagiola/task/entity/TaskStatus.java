@@ -1,9 +1,9 @@
 package com.biagiola.task.entity;
 
 public enum TaskStatus {
-    SCHEDULED,
+    PENDING,
     PROCESSING,
-    EXECUTED,
     CANCELLED,
+    SUCCESS,
     FAILED
 }

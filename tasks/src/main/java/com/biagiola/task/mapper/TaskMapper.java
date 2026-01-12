@@ -15,7 +15,7 @@ public class TaskMapper {
         dto.setAttempts(task.getAttempts());
 //        dto.setCreatedAt(task.getCreatedAt());
 //        dto.setUpdatedAt(task.getUpdatedAt());
-        dto.setExecutedAt(task.getExecutedAt());
+        dto.setExecuteAt(task.getExecuteAt());
         dto.setLastError(task.getLastError());
         return dto;
     }
@@ -29,14 +29,14 @@ public class TaskMapper {
         // optional fields
         if (dto.getStatus() != null) task.setStatus(dto.getStatus());
         if (dto.getAttempts() != null) task.setAttempts(dto.getAttempts());
-        task.setExecutedAt(dto.getExecutedAt());
+        task.setExecuteAt(dto.getExecuteAt());
         task.setLastError(dto.getLastError());
         return task;
     }
 
     public static Task mapStatusUpdate(TaskStatusUpdateDto dto, Task task) {
         task.setStatus(dto.getStatus());
-        if (dto.getExecutedAt() != null) task.setExecutedAt(dto.getExecutedAt());
+        if (dto.getExecuteAt() != null) task.setExecuteAt(dto.getExecuteAt());
         if (dto.getLastError() != null) task.setLastError(dto.getLastError());
         return task;
     }
