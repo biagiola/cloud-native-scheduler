@@ -20,8 +20,8 @@ public class TaskClaimService {
 
     @Transactional
     public List<Task> claimDueTasks(int batchSize) {
-        Instant now = Instant.now(); // UTC by definition
-//        System.out.println("NOW: " + now.toString()); // it prints 2026-01-12T13:02:46.636003463Z which is good :c
+        Instant now = Instant.now(); // UTC
+
         List<Task> tasks = taskRepository.lockDuePendingTasks(now, batchSize);
 
         for (Task task : tasks) {
