@@ -27,7 +27,6 @@ public class MainScheduler {
 
         for (Task task : claimed) {
             try {
-                // --- DO WORK HERE ---
                 // e.g. send email, call external API, etc.
                 System.out.println("THIS IS ONE CLAIMED TASK: " + task.getId());
 
