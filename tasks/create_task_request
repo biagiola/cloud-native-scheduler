@@ -1,0 +1,8 @@
+curl --location 'http://ec2-54-226-179-87.compute-1.amazonaws.com:9000/api/tasks' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "description": "new message",
+  "email": "john.doe@email.com",
+  "executeAt": 5
+
+}'
