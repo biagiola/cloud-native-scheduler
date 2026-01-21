@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 tasks/spring-boot-app-key.pem
+tasks/src/main/resources/.env
 
 ### STS ###
 .apt_generated
