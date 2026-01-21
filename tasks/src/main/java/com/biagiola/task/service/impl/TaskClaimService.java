@@ -28,7 +28,6 @@ public class TaskClaimService {
             System.out.println("THIS IS A TASK READY TO PROCESS " + task.getId());
             task.setStatus(TaskStatus.PROCESSING);
             task.setAttempts(task.getAttempts() == null ? 1 : task.getAttempts() + 1);
-            // updatedAt will be set by @PreUpdate on flush/update
         }
 
         // Persist the status change while locks are held, then commit quickly

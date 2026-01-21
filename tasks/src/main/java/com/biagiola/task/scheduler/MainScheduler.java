@@ -27,8 +27,8 @@ public class MainScheduler {
 
         for (Task task : claimed) {
             try {
-                // e.g. send email, call external API, etc.
-                System.out.println("THIS IS ONE CLAIMED TASK: " + task.getId());
+                // Dry-run: send email
+                System.out.println("EMAIL WAS SENT: -" + task.getId());
 
                 finalizeService.markSuccess(task.getId());
             } catch (Exception ex) {

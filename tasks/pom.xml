@@ -13,7 +13,7 @@
     <artifactId>tasks</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>cards</name>
+    <name>tasks</name>
     <description>Microservice for Tasks</description>
     <url/>
     <licenses>
